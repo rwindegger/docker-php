@@ -11,18 +11,17 @@ RUN apt-get update \
 		libjpeg-dev \
 		libmemcached-dev \
 		libfreetype6-dev \
-    libmagickwand-dev \
+		libmagickwand-dev \
 		libxml2-dev \
-    ssmtp \
-    zip \
-    libgeoip-dev \
-    --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/* \
+		ssmtp \
+		zip \
+		libgeoip-dev \
+    		--no-install-recommends \
+  	&& rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mysqli opcache soap mbstring pdo_mysql zip \
 	&& docker-php-ext-enable gd \
 	&& docker-php-ext-enable opcache \
-	&& docker-php-ext-enable memcached \
 	&& docker-php-ext-enable memcache \
 	&& pecl install imagick \
 	&& docker-php-ext-enable imagick
