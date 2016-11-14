@@ -19,7 +19,7 @@ RUN apt-get update \
     		--no-install-recommends \
   	&& rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install gd mysqli opcache soap mbstring zip \
+	&& docker-php-ext-install gd mysqli opcache soap mbstring zip pdo pdo_mysql \
 	&& docker-php-ext-enable gd \
 	&& docker-php-ext-enable opcache \
 	&& pecl install imagick \
