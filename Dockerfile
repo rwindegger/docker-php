@@ -22,7 +22,6 @@ RUN apt-get update \
 	&& docker-php-ext-install gd mysqli opcache soap mbstring zip \
 	&& docker-php-ext-enable gd \
 	&& docker-php-ext-enable opcache \
-	&& docker-php-ext-enable memcached \
 	&& pecl install imagick \
 	&& docker-php-ext-enable imagick
 
