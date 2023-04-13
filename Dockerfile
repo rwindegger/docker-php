@@ -1,24 +1,26 @@
-FROM php:fpm
+FROM php:7.4-fpm
 
 MAINTAINER rene@windegger.wtf
 
 # install the PHP extensions we need
 RUN apt-get update \
 	&& apt-get install -y \
-		mysql-client \
-		libmysqlclient-dev \
-		libpng12-dev \
+		default-mysql-client \
+		default-libmysqlclient-dev \
+		libpng-dev \
 		libjpeg-dev \
 		libmemcached-dev \
 		libfreetype6-dev \
 		libmagickwand-dev \
 		libxml2-dev \
+        libonig-dev \
+        libzip-dev \
 		ssmtp \
 		zip \
 		libgeoip-dev \
     		--no-install-recommends \
   	&& rm -rf /var/lib/apt/lists/* \
-	&& docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr --with-png-dir=/usr --with-jpeg-dir=/usr \
+	&& docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install gd mysqli opcache soap mbstring zip pdo pdo_mysql \
 	&& docker-php-ext-enable gd \
 	&& docker-php-ext-enable opcache \
